@@ -2,9 +2,12 @@
   "name": "home",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "serve": "serve dist -o"
   },
   "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "serve": "^14.2.0",
     "webpack": "^5.76.3",
     "webpack-cli": "^5.0.1"
   }
