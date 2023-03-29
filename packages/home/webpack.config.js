@@ -1,60 +1,77 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const deps = require("./package.json").dependencies;
+module.exports = {
+    entry: "./src/index",
+    cache: false,
 
-const isProduction = process.env.NODE_ENV == 'production';
+    mode: "development",
+    devtool: "source-map",
 
-const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
+    optimization: {
+        minimize: false,
+    },
 
-const config = {
-    entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        publicPath: "http://localhost:3001/",
     },
-    devServer: {
-        open: true,
-        host: 'localhost',
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: 'index.html',
-        }),
 
-        // Add your plugins here
-        // Learn more about plugins from https://webpack.js.org/configuration/plugins/
-    ],
+    resolve: {
+        extensions: [".jsx", ".js", ".json"],
+    },
+
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: [stylesHandler,'css-loader'],
+                test: /\.m?js/,
+                type: "javascript/auto",
+                resolve: {
+                    fullySpecified: false,
+                },
             },
             {
-                test: /\.s[ac]ss$/i,
-                use: [stylesHandler, 'css-loader', 'sass-loader'],
+                test: /\.jsx?$/,
+                loader: require.resolve("babel-loader"),
+                options: {
+                    presets: [require.resolve("@babel/preset-react")],
+                },
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'asset',
+                test: /\.md$/,
+                loader: "raw-loader",
             },
-
-            // Add your rules for custom modules here
-            // Learn more about loaders from https://webpack.js.org/loaders/
         ],
     },
-};
 
-module.exports = () => {
-    if (isProduction) {
-        config.mode = 'production';
-        
-        config.plugins.push(new MiniCssExtractPlugin());
-        
-        
-    } else {
-        config.mode = 'development';
-    }
-    return config;
+    plugins: [
+        new CopyPlugin([{ from: "fruit", to: "fruit" }]),
+        new ModuleFederationPlugin({
+            name: "home",
+            filename: "remoteEntry.js",
+            remotes: {
+                nav: "nav@http://localhost:3003/remoteEntry.js",
+            },
+            exposes: {
+                "./ProductCarousel": "./src/ProductCarousel",
+                "./fruit": "./src/fruit",
+                "./ProductCard": "./src/ProductCard",
+            },
+            shared: {
+                ...deps,
+                react: {
+                    singleton: true,
+                    requiredVersion: deps.react,
+                },
+                "react-dom": {
+                    singleton: true,
+                    requiredVersion: deps["react-dom"],
+                },
+            },
+        }),
+        new HtmlWebpackPlugin({
+            template: "./public/index.html",
+        }),
+    ],
 };
