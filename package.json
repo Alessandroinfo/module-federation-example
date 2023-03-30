@@ -2,22 +2,17 @@
   "name": "module-federation-example",
   "version": "1.0.0",
   "description": "Simple example on how to implement module federation",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Alessandroinfo/module-federation-example.git"
-  },
-  "keywords": [
-    "mfe",
-    "module-federation"
-  ],
   "author": "Alessandro Russo",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Alessandroinfo/module-federation-example/issues"
+  "scripts": {
+    "install": "lerna run install",
+    "build": "lerna build",
+    "serve": "lerna serve"
   },
-  "homepage": "https://github.com/Alessandroinfo/module-federation-example#readme"
+  "devDependencies": {
+    "lerna": "^6.6.1"
+  },
+  "workspaces": [
+    "modules/*"
+  ]
 }
