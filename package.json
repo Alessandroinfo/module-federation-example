@@ -4,15 +4,17 @@
   "description": "Simple example on how to implement module federation",
   "author": "Alessandro Russo",
   "license": "MIT",
+  "private": true,
   "scripts": {
-    "install": "lerna run install",
-    "build": "lerna build",
-    "serve": "lerna serve"
-  },
-  "devDependencies": {
-    "lerna": "^6.6.1"
+    "build": "npm run build --workspaces",
+    "serve": "wsrun --parallel serve",
+    "start": "concurrently \"wsrun --parallel start\" \"wsrun --parallel serve\""
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^8.0.1",
+    "wsrun": "^5.2.4"
+  }
 }
