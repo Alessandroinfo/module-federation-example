@@ -10,6 +10,6 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack --watch",
-    "serve": "serve dist -p 3001"
+    "serve": "serve dist -p 4001"
   }
 }

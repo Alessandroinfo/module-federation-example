@@ -5,12 +5,11 @@
     "html-webpack-plugin": "^5.5.0",
     "serve": "^14.2.0",
     "webpack": "^5.76.3",
-    "webpack-cli": "^5.0.1",
-    "nav": "*"
+    "webpack-cli": "^5.0.1"
   },
   "scripts": {
     "build": "webpack",
     "start": "webpack --watch",
-    "serve": "serve dist -p 3000"
+    "serve": "serve dist -p 4000"
   }
 }
