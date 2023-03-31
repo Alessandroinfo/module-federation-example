@@ -8,8 +8,6 @@ module.exports = {
     optimization: {
         minimize: false
     },
-    cache: false,
-    devtool: "source-map",
     resolve: {
         extensions: [".js"],
     },
