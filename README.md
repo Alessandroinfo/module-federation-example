@@ -11,6 +11,8 @@ The **home** is the app container where it's imported the **header** remote modu
 
 
 ### Getting started
+Compatible with `Node.js 14+`.
+
 It'a  monorepo so you can find workspaces setting in package.json.
 `npm i` will install every packages dependencies
 `npm run build` will build each package.
