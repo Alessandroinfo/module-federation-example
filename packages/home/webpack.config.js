@@ -19,7 +19,7 @@ module.exports = {
             name: "home",
             filename: "remoteEntry.js",
             remotes: {
-                nav: "nav@http://localhost:4001/remoteEntry.js"
+                nav: "header@http://localhost:4001/remoteEntry.js"
             },
             shared: {
                 ...deps

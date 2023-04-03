@@ -29,7 +29,7 @@ new ModuleFederationPlugin({
 name: "home",
 filename: "remoteEntry.js",
 remotes: {
-nav: "nav@http://localhost:4001/remoteEntry.js"
+header: "header@http://localhost:4001/remoteEntry.js"
 },
 shared: {
 ...deps
@@ -42,7 +42,7 @@ shared: {
 ```js
 ...
 new ModuleFederationPlugin({
-    name: "nav",
+    name: "header",
     filename: "remoteEntry.js",
     exposes: {
         "./Header": "./src/Header"

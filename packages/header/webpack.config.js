@@ -16,7 +16,7 @@ module.exports = {
     },
     plugins: [
         new ModuleFederationPlugin({
-            name: "nav",
+            name: "header",
             filename: "remoteEntry.js",
             exposes: {
                 "./Header": "./src/Header"
