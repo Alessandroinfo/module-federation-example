@@ -26,14 +26,14 @@ header is served on  http://localhost:4001
 ```js
 ...
 new ModuleFederationPlugin({
-name: "home",
-filename: "remoteEntry.js",
-remotes: {
-header: "header@http://localhost:4001/remoteEntry.js"
-},
-shared: {
-...deps
-}
+    name: "home",
+    filename: "remoteEntry.js",
+    remotes: {
+        header: "header@http://localhost:4001/remoteEntry.js"
+    },
+    shared: {
+        ...deps
+    }
 }),
 ...
 ```
