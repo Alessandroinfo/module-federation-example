@@ -14,9 +14,9 @@ The **home** is the app container where it's imported the **header** remote modu
 Compatible with `Node.js 14+`.
 
 It'a  monorepo so you can find workspaces setting in package.json.
-`npm i` will install every packages dependencies
-`npm run build` will build each package.
-`npm run start` will serve each package so you can import remote module on home app.
+- `npm i` will install every packages dependencies
+- `npm run build` will build each package.
+- `npm run start` will serve each package so you can import remote module on home app.
 
 home is served on  http://localhost:4000
 header is served on  http://localhost:4001
